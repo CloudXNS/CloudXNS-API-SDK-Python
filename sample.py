@@ -35,8 +35,8 @@ if __name__ == '__main__':
 
     # domain stat
     # result = api.domain_stat(domain_id=36574, start_date=20151001, end_date=20151020)
-    result = api.domain_stat(domain_id=5575, start_date=20151001, end_date=20151020)
-    print result
+    # result = api.domain_stat(domain_id=5575, start_date=20151001, end_date=20151020)
+    # print result
 
     # host list
     # result = api.host_list(1537, 0, 100)
