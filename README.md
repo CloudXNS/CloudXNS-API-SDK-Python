@@ -37,9 +37,9 @@ if __name__ == '__main__':
     URL https://www.cloudxns.net/api2/domain
     :return: String
     """
-    #result = api.domain_list()
-    #print result['message']
-    #print result['data']
+    result = api.domain_list()
+    print result['message']
+    print result['data']
 
 
     """
@@ -48,11 +48,10 @@ if __name__ == '__main__':
     URL https://www.cloudxns.net/api2/domain
     :return: String
     """
-    # domain add
-    #import random
-    #domain = "sdk-test%d.com" % random.randint(1000, 100000)
-    #result = api.domain_add(domain)
-    #print result
+    import random
+    domain = "sdk-test%d.com" % random.randint(1000, 100000)
+    result = api.domain_add(domain)
+    print result
 
     """
     功能 删除域名
@@ -60,6 +59,6 @@ if __name__ == '__main__':
     URL https://www.cloudxns.net/api2/domain
     :return: String
     """
-    #result = api.domain_delete(32224)
-    #print result
+    result = api.domain_delete(32224)
+    print result
 ```

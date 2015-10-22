@@ -33,7 +33,6 @@ if __name__ == '__main__':
     URL https://www.cloudxns.net/api2/domain
     :return: String
     """
-    # domain add
     #import random
     #domain = "sdk-test%d.com" % random.randint(1000, 100000)
     #result = api.domain_add(domain)
