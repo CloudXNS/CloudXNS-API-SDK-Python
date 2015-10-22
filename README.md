@@ -7,6 +7,7 @@ Extract the archive file downloaded from [CloudXNS-API-SDK-Python.zip](https://g
 You can install Package:
 ```shell
 pip install restclient
+python setup.py install
 ```
 
 ##Demo##
