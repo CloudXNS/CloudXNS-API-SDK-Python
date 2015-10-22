@@ -83,13 +83,34 @@ class Api:
         return GET(__API_URL__ + 'version')
 
     def domain_list(self):
+        """
+        功能 域名列表
+        HTTP 请求方式 GET
+        URL https://www.cloudxns.net/api2/domain
+        :return: String
+        """
         return self.__request('GET', 'domain')
 
     def domain_add(self, domain_name):
+        """
+        功能 添加域名
+        HTTP 请求方式 POST
+        URL https://www.cloudxns.net/api2/domain
+        :return: String
+        """
         data = {"domain": domain_name}
         return self.__request('POST', 'domain', data=data)
 
     def domain_delete(self, domain_id):
+        """
+        功能 删除域名
+        HTTP 请求方式 DELETE
+        URL https://www.cloudxns.net/api2/domain
+        请求参数：
+            参数名称 类型 必填 描述
+            domain_id Integer 是 域名ID
+        :return: String
+        """
         if isinstance(domain_id, int):
             domain_id = str(domain_id)
         return self.__request('DELETE', 'domain/' + domain_id)
@@ -119,6 +140,17 @@ class Api:
         return self.__request('GET', 'domain_stat/' + domain_id, data=data)
 
     def host_list(self, domain_id, offset=0, row_num=2000):
+        """
+        功能 主机记录
+        HTTP 请求方式 GET
+        URL https://www.cloudxns.net/api2/host/:domain_id?offset=:offset&row_num=:row_num
+            请求参数：
+                参数名称 类型 必填 描述
+                domain_id Integer 是 域名ID
+                offset Integer  否 记录开始的偏移,第一条记录为 0,依次类推
+                row_num Integer 否 要获取的记录的数量,比如获取 30 条,则为 30,最大可取 2000条
+        :return: String
+        """
         if isinstance(domain_id, int):
             domain_id = str(domain_id)
         if row_num > 2000:
@@ -126,11 +158,26 @@ class Api:
         return self.__request('GET', 'host/'+domain_id, {"offset": offset, "row_num": row_num})
 
     def host_delete(self, host_id):
+        """
+        功能 删除主机记录
+        HTTP 请求方式 GET
+        URL https://www.cloudxns.net/api2/host/:id
+            请求参数：
+                参数名称 类型 必填 描述
+                host_id Integer 是 主机记录id
+        :return: String
+        """
         if isinstance(host_id, int):
             host_id = str(host_id)
         return self.__request('DELETE', 'host/'+host_id)
 
     def line_list(self, level=''):
+        """
+        功能 线路列表
+        HTTP 请求方式 GET
+        URL https://www.cloudxns.net/line
+        :return: String
+        """
         if level not in ['', 'region', 'isp']:
             raise Exception("param 'level' mast be '' or 'region' or 'isp' ")
         if level != '':
@@ -140,9 +187,21 @@ class Api:
         return self.__request('GET', uri)
 
     def ns_list(self):
+        """
+        功能 NS服务器列表
+        HTTP 请求方式 GET
+        URL https://www.cloudxns.net/api2/ns_server
+        :return: String
+        """
         return self.__request('GET', 'ns_server')
 
     def record_type_list(self):
+        """
+        功能 记录类型列表
+        HTTP 请求方式 GET
+        URL https://www.cloudxns.net/api2/type
+        :return: String
+        """
         return self.__request('GET', 'type')
 
     def record_list(self, domain_id, host_id=0, offset=0, row_num=30):
@@ -183,6 +242,21 @@ class Api:
         return self.__request('GET', 'record/'+domain_id, {"host_id": host_id, "offset": offset, "row_num": row_num})
 
     def record_add(self, domain_id, host_name, value, record_type='A', mx=None, ttl=600, line_id=1):
+        """
+        功能 添加解析记录
+        HTTP 请求方式 GET
+        URL https://www.cloudxns.net/api2/record
+            请求参数：
+                参数名称 类型 必填 描述
+                domain_id Integer  域名 id
+                host_name String  主机记录名称 如 www, 默认@
+                value String 记录值, 如IP:8.8.8.8,CNAME:cname.cloudxns.net., MX: mail.cloudxns.net.
+                record_type String 记录类型,通过 API 获得记录类型,大写英文,比如:A
+                mx Integer 优先级,范围 1-100。当记录类型是 MX/AX/CNAMEX 时有效并且必选
+                ttl Integer TTL,范围 60-3600,不同等级域名最小值不同
+                line_id Integer 线路id,(通过 API 获得记录线路 id)
+            :return: String
+        """
         if record_type not in ["A", "CNAME", "NS", "MX", "TXT", "AAAA", "LINK", "AX",
                                "CNAMEX", "SRV", "DR301X", "DR302X", "DRHIDX"]:
             raise Exception("Invalid record type")
@@ -202,6 +276,18 @@ class Api:
         return self.__request('POST', 'record', data=data)
 
     def record_spare(self, domain_id, host_id, record_id, value):
+        """
+        功能 添加备记录
+        HTTP 请求方式 GET
+        URL https://www.cloudxns.net/api2/record/spare
+            请求参数：
+                参数名称 类型 必填 描述
+                domain_id Integer  域名 id
+                host_id Integer  主机记录名称 如 www, 默认@
+                record_id Integer 解析记录id
+                value String 记录值, 如IP:8.8.8.8,CNAME:cname.cloudxns.net., MX: mail.cloudxns.net.
+            :return: String
+        """
         data = {
             "domain_id": domain_id,
             "host_id": host_id,
@@ -212,7 +298,22 @@ class Api:
 
     def record_update(self, record_id, domain_id, host_name, value,
                       record_type='A', mx=None, ttl=600, line_id=1, spare_data=None):
-
+        """
+        功能 更新解析记录
+        HTTP 请求方式 GET
+        URL https://www.cloudxns.net/api2/record/:id
+            请求参数：
+                参数名称 类型 必填 描述
+                record_id Integer 解析记录id
+                domain_id Integer 域名id
+                host_name String 主机记录名称 如 www, 默认@
+                value String 记录值, 如IP:8.8.8.8,CNAME:cname.cloudxns.net., MX: mail.cloudxns.net.
+                record_type String 记录类型,通过 API 获得记录类型,大写英文,比如:A
+                mx Integer 优先级,范围 1-100。当记录类型是 MX/AX/CNAMEX 时有效并且必选
+                ttl Integer TTL,范围 60-3600,不同等级域名最小值不同
+                line_id Integer 线路 id,(通过 API 获得记录线路 id)
+            :return: String
+        """
         if record_type not in ["A", "CNAME", "NS", "MX", "TXT", "AAAA", "LINK", "AX",
                                "CNAMEX", "SRV", "DR301X", "DR302X", "DRHIDX"]:
             raise Exception("Invalid record type")
@@ -238,6 +339,16 @@ class Api:
         return self.__request('PUT', 'record/' + record_id, data=data)
 
     def record_delete(self, record_id, domain_id):
+        """
+        功能 删除解析记录
+        HTTP 请求方式 GET
+        URL https://www.cloudxns.net/api2/record/:id/:domain_id
+            请求参数：
+                参数名称 类型 必填 描述
+                record_id Integer 解析记录id
+                domain_id Integer  域名 id
+            :return: String
+        """
         if isinstance(record_id, int):
             record_id = str(record_id)
 

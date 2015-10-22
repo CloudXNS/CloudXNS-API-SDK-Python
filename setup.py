@@ -11,6 +11,5 @@ setup(name='CloudXNS-API-SDK-Python',
       packages=['cloudxns'],
       long_description="Python sdk for CloudXNS.net",
       license="MIT",
-      platforms=["any"],
-      install_requires=["restclient"]
+      platforms=["any"]
 )
