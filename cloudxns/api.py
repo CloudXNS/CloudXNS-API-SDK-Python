@@ -76,7 +76,7 @@ class Api:
             content = eval(method)(__API_URL__ + uri,
                                           params=data, headers=self.__headers, resp=self.__debug, async=False)
 
-            return json.loads(content)
+            return content
 
     @staticmethod
     def vsersion():
@@ -312,6 +312,7 @@ class Api:
                 mx Integer 优先级,范围 1-100。当记录类型是 MX/AX/CNAMEX 时有效并且必选
                 ttl Integer TTL,范围 60-3600,不同等级域名最小值不同
                 line_id Integer 线路 id,(通过 API 获得记录线路 id)
+                spare_data String 备IP
             :return: String
         """
         if record_type not in ["A", "CNAME", "NS", "MX", "TXT", "AAAA", "LINK", "AX",

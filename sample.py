@@ -23,9 +23,7 @@ if __name__ == '__main__':
     :return: String
     """
     #result = api.domain_list()
-    #print result['message']
-    #print result['data']
-
+    #print result
 
     """
     功能 添加域名
@@ -183,10 +181,11 @@ if __name__ == '__main__':
             mx Integer 优先级,范围 1-100。当记录类型是 MX/AX/CNAMEX 时有效并且必选
             ttl Integer TTL,范围 60-3600,不同等级域名最小值不同
             line_id Integer 线路 id,(通过 API 获得记录线路 id)
+            spare_data String 备IP
         :return: String
     """
-    #result = api.record_update(629125, 2125, 'w1111111', '192.168.100.210', 'AX', 55, 600, 1)
-    #print result
+    result = api.record_update(629125, 2125, 'w1111111', '192.168.100.210', 'AX', 55, 600, 1)
+    print result
 
     """
     功能 删除解析记录
