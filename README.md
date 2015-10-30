@@ -1,4 +1,4 @@
-##A parallel CloudXNS sdk written in pure Python##
+##CloudXNS-API-SDK-Python Package##
 
 
 ##Install##
