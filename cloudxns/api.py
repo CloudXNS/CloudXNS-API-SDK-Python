@@ -153,8 +153,6 @@ class Api:
         """
         if isinstance(domain_id, int):
             domain_id = str(domain_id)
-        if row_num > 2000:
-            raise Exception("param 'row_num' max is 2000")
         return self.__request('GET', 'host/'+domain_id, {"offset": offset, "row_num": row_num})
 
     def host_delete(self, host_id):
@@ -237,8 +235,6 @@ class Api:
         """
         if isinstance(domain_id, int):
             domain_id = str(domain_id)
-        if row_num > 2000:
-            raise Exception("param 'row_num' max is 2000")
         return self.__request('GET', 'record/'+domain_id, {"host_id": host_id, "offset": offset, "row_num": row_num})
 
     def record_add(self, domain_id, host_name, value, record_type='A', mx=None, ttl=600, line_id=1):
