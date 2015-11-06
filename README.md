@@ -3,11 +3,19 @@
 
 ##Install##
 
+###Install First###
+
 Extract the archive file downloaded from [CloudXNS-API-SDK-Python.zip](https://github.com//CloudXNS/CloudXNS-API-SDK-Python/archive/master.zip) to your project.
 You can install Package:
 ```shell
 pip install restclient
 python setup.py install
+```
+
+###Install Second###
+you can then install using the following command:
+```shell
+pip install CloudXNS-API-SDK-Python
 ```
 
 ##Demo##
