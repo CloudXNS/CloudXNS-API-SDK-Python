@@ -158,7 +158,7 @@ class Api:
     def host_delete(self, host_id):
         """
         功能 删除主机记录
-        HTTP 请求方式 GET
+        HTTP 请求方式 DELETE
         URL https://www.cloudxns.net/api2/host/:id
             请求参数：
                 参数名称 类型 必填 描述
@@ -240,7 +240,7 @@ class Api:
     def record_add(self, domain_id, host_name, value, record_type='A', mx=None, ttl=600, line_id=1):
         """
         功能 添加解析记录
-        HTTP 请求方式 GET
+        HTTP 请求方式 POST
         URL https://www.cloudxns.net/api2/record
             请求参数：
                 参数名称 类型 必填 描述
@@ -274,7 +274,7 @@ class Api:
     def record_spare(self, domain_id, host_id, record_id, value):
         """
         功能 添加备记录
-        HTTP 请求方式 GET
+        HTTP 请求方式 POST
         URL https://www.cloudxns.net/api2/record/spare
             请求参数：
                 参数名称 类型 必填 描述
@@ -296,7 +296,7 @@ class Api:
                       record_type='A', mx=None, ttl=600, line_id=1, spare_data=None):
         """
         功能 更新解析记录
-        HTTP 请求方式 GET
+        HTTP 请求方式 PUT
         URL https://www.cloudxns.net/api2/record/:id
             请求参数：
                 参数名称 类型 必填 描述
@@ -338,7 +338,7 @@ class Api:
     def record_delete(self, record_id, domain_id):
         """
         功能 删除解析记录
-        HTTP 请求方式 GET
+        HTTP 请求方式 DELETE
         URL https://www.cloudxns.net/api2/record/:id/:domain_id
             请求参数：
                 参数名称 类型 必填 描述
