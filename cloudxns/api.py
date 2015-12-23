@@ -12,7 +12,7 @@ except ImportError:
 
 
 __API_URL__ = 'https://www.cloudxns.net/api2/'
-
+__httplib_params__ = {'disable_ssl_certificate_validation':True}
 
 class Api:
     def __init__(self, api_key=None, secret_key=None):
@@ -69,18 +69,18 @@ class Api:
 
         if self.__debug:
             resp, content = eval(method)(__API_URL__ + uri,
-                                                params=data, headers=self.__headers, resp=self.__debug, async=False)
+                                                params=data, headers=self.__headers, resp=self.__debug, async=False,httplib_params=__httplib_params__)
             return resp, content
 
         else:
             content = eval(method)(__API_URL__ + uri,
-                                          params=data, headers=self.__headers, resp=self.__debug, async=False)
+                                          params=data, headers=self.__headers, resp=self.__debug, async=False,httplib_params=__httplib_params__)
 
             return content
 
     @staticmethod
     def vsersion():
-        return GET(__API_URL__ + 'version')
+        return GET(__API_URL__ + 'version',httplib_params=__httplib_params__)
 
     def domain_list(self):
         """
