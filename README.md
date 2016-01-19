@@ -69,4 +69,15 @@ if __name__ == '__main__':
     """
     result = api.domain_delete(32224)
     print result
+
+    """
+        功能	DDNS快速修改解析记录值
+        HTTP请求方式	POST
+        URL	https://www.cloudxns.net/api2/ddns
+        domain:（必选）已存在的完整域名（如主机记录为@时domain是cloudxns.net，为www时domain是www.cloudxns.net）
+        ip:（可选）记录IP值（8.8.8.8）或者多个IP值中间用|分割（8.8.8.8|1.1.1.1）;为空时IP值由API自动获取客户端IP
+        line_id:（可选）线路id(通过API获取)，默认值1（全网默认）
+    """
+    result = api.ddns('ddns.a.com')
+    print result
 ```

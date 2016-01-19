@@ -353,3 +353,26 @@ class Api:
             domain_id = str(domain_id)
 
         return self.__request('DELETE', 'record/' + record_id + '/' + domain_id)
+
+    def ddns(self, domain, ip=None, line_id=0):
+        """
+        功能	DDNS快速修改解析记录值
+        HTTP请求方式	POST
+        URL	https://www.cloudxns.net/api2/ddns
+        :param domain:（必选）含主机记录的域名（如主机记录为@时domain是cloudxns.net，为www时domain是www.cloudxns.net）
+        :param ip:（可选）记录IP值（8.8.8.8）或者多个IP值中间用|分割（8.8.8.8|1.1.1.1）;为空时IP值由API自动获取客户端IP
+        :param line_id:（可选）线路id(通过API获取)，默认值1（全网默认）
+        :return:
+        """
+
+        data = {
+            "domain": domain
+        }
+
+        if ip is not None:
+            data['ip'] = ip
+
+        if line_id > 0:
+            data['line_id'] = line_id
+
+        return self.__request('POST', 'ddns', data=data)
