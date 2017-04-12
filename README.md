@@ -46,9 +46,7 @@ if __name__ == '__main__':
     :return: String
     """
     result = api.domain_list()
-    print result['message']
-    print result['data']
-
+    print result
 
     """
     功能 添加域名
